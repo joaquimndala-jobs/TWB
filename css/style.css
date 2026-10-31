@@ -884,7 +884,7 @@ body.nav-open .wa-float {
 .modal {
   position: fixed;
   inset: 0;
-  z-index: 110;
+  z-index: 210;
   display: none;
   place-items: center;
   padding: 16px;

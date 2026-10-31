@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Conta Tmcel – número do cartão, OTP, saldo M-Cash e histórico de pagamentos.">
+  <title>Conta – Tmcel</title>
+  <link rel="icon" href="assets/img/sorriso.png">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <a class="skip-link" href="#conteudo">Saltar para o conteúdo</a>
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="logo" href="index.html"><img src="assets/img/logo-tmcel.png" alt="Tmcel"><strong>Tmcel</strong></a>
+      <button class="nav-toggle" type="button" data-nav-toggle aria-expanded="false" aria-label="Abrir menu"><span></span><span></span><span></span></button>
+      <nav class="nav-main" aria-label="Principal"></nav>
+      <div class="header-tools">
+        <button class="icon-btn" type="button" data-open-search aria-label="Pesquisar">Go</button>
+        <button class="icon-btn" type="button" data-open-cart aria-label="Carrinho">Cart <span class="badge" data-cart-count>0</span></button>
+      </div>
+    </div>
+  </header>
+
+  <header class="page-hero">
+    <div class="container">
+      <p class="kicker">Área do cliente</p>
+      <h1>A sua conta Tmcel</h1>
+      <p>Entre com o número do cartão e um código OTP. Consulte estado, saldo M-Cash, dados pessoais e o histórico de pagamentos — só o que é seu.</p>
+    </div>
+  </header>
+
+  <main id="conteudo" class="section">
+    <div class="container" id="account-app"></div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-grid">
+      <div>
+        <img src="assets/img/logo-tmcel.png" alt="" width="120">
+        <p>Rua Belmiro Obadias Muianga, Nº 384<br>CP 1483 – Maputo – Moçambique</p>
+      </div>
+      <div>
+        <h3>Contactos</h3>
+        <p>Telefone: <a href="tel:+25821351100">+258 21 351 100</a><br>Linha de cliente: 100<br>WhatsApp: <a href="https://wa.me/258821001000" target="_blank" rel="noopener">82 100 1000</a><br>Individual: assistenciaaocliente@tmcel.mz<br>Empresarial: corporate@tmcel.mz</p>
+      </div>
+      <div>
+        <h3>M-Cash</h3>
+        <p>Carteira móvel Tmcel. PIN de demonstração: 1234. Compra para si ou para outro número.</p>
+      </div>
+      <div>
+        <h3>Links</h3>
+        <p><a href="index.html">Início</a><br><a href="pacotes.html">Pacotes</a><br><a href="contacto.html">Contacto</a></p>
+      </div>
+    </div>
+    <div class="container socket">
+      <span>© Copyright Tmcel <span data-year></span> · Redesenho académico UniSCED / TWeb 2026</span>
+      <a href="comparacao.html">Comparação com o site original</a>
+    </div>
+  </footer>
+
+  <div class="backdrop" id="backdrop"></div>
+  <aside class="drawer" id="cart-drawer" aria-label="Carrinho">
+    <div class="drawer-head"><strong>Carrinho</strong><button class="icon-btn" type="button" data-close-cart aria-label="Fechar">×</button></div>
+    <div class="drawer-body" data-cart-body></div>
+    <div class="drawer-foot"><strong data-cart-total>0 MT</strong></div>
+  </aside>
+  <div class="search-overlay" id="search-overlay">
+    <div class="search-box">
+      <label for="global-search">Pesquisar</label>
+      <input id="global-search" type="search" placeholder="Pacote, loja, notícia…">
+      <div class="search-hits" id="search-hits"></div>
+    </div>
+  </div>
+  <script src="js/data.js"></script>
+  <script src="js/app.js"></script>
+  <script src="js/account.js"></script>
+</body>
+</html>

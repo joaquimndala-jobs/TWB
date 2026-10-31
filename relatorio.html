@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Relatório – Redesenho Tmcel | UniSCED TWeb 2026</title>
+  <style>
+    @page { size: A4; margin: 18mm 16mm; }
+    :root { --g: #00492a; --a: #008d6e; }
+    body { font-family: "Times New Roman", Times, serif; font-size: 12pt; line-height: 1.45; color: #111; max-width: 820px; margin: 24px auto; padding: 0 16px 48px; }
+    h1, h2, h3 { font-family: "Segoe UI", sans-serif; color: var(--g); }
+    h1 { font-size: 18pt; text-align: center; margin-bottom: 4px; }
+    h2 { font-size: 14pt; border-bottom: 1px solid #ccc; padding-bottom: 4px; margin-top: 22px; }
+    h3 { font-size: 12.5pt; margin-top: 14px; }
+    .cover { text-align: center; margin-bottom: 28px; }
+    .cover p { margin: 4px 0; }
+    p { text-align: justify; }
+    table { width: 100%; border-collapse: collapse; font-size: 11pt; margin: 12px 0; }
+    th, td { border: 1px solid #ccc; padding: 6px 8px; text-align: left; vertical-align: top; }
+    th { background: #e8f6f1; }
+    ul, ol { margin: 6px 0 10px 22px; }
+    .muted { color: #444; font-size: 11pt; }
+    a { color: var(--a); }
+    @media print { body { margin: 0; } a { color: inherit; text-decoration: none; } }
+  </style>
+</head>
+<body>
+  <header class="cover">
+    <p><strong>UNIVERSIDADE ABERTA ISCED – UniSCED</strong></p>
+    <p>Faculdade de Engenharia e Agricultura</p>
+    <p>Licenciatura em Engenharia Informática</p>
+    <p>Disciplina: Tecnologias Web · Trabalho de Campo 2026</p>
+    <h1>Redesenho do website da Tmcel – Moçambique Telecom, SA</h1>
+    <p class="muted">Site original: https://www.tmcel.mz/ · Tema: Redesenho de Websites de Empresas Nacionais</p>
+  </header>
+
+  <h2>1. Introdução</h2>
+  <p>
+    Este trabalho redesenha o website da Tmcel – Moçambique Telecom, SA
+    (<a href="https://www.tmcel.mz/">www.tmcel.mz</a>), operador nacional de telefonia
+    móvel e fixa. A actividade, definida no enunciado da disciplina Tecnologias Web,
+    exige identificar um website de uma empresa nacional, analisar limitações de
+    usabilidade, navegação e design, e implementar uma versão melhorada em HTML, CSS
+    e JavaScript, com operações de adicionar, remover, pesquisar e ordenar itens
+    relevantes ao contexto da empresa.
+  </p>
+  <h3>1.1 Identificação do site original</h3>
+  <p>
+    O site oficial está construído em WordPress 7 com o tema comercial Enfold,
+    WooCommerce e LayerSlider. A identidade visual usa verde (#008d6e, #00492a),
+    lima (#8bba34) e amarelo (#f6d21b). O conteúdo cobre Netgiro, Recargas GIGA,
+    Pacote Jovem, Pacotes PLUS, DUO, BandaLarga ADSL/fibra, Tomalá, tarifas nacionais,
+    lojas e notícias institucionais (incluindo a parceria com a UNICEF em 2025).
+  </p>
+  <h3>1.2 Análise das limitações</h3>
+  <table>
+    <thead><tr><th>Dimensão</th><th>Problema observado em tmcel.mz</th></tr></thead>
+    <tbody>
+      <tr><td>Navegação</td><td>Mega-menu com mais de 40 ligações, várias duplicadas (Tomalá, Aceita lá) em pré e pós-pago. Custo cognitivo elevado.</td></tr>
+      <tr><td>Usabilidade</td><td>Tabelas Netgiro e Pacote Jovem com células vazias e validade implícita. O utilizador não compara preços.</td></tr>
+      <tr><td>Funcionalidade</td><td>Página de lojas mostra «Number Of Shops: 0». O localizador não devolve resultados. Carrinho WooCommerce sem catálogo útil.</td></tr>
+      <tr><td>Pesquisa</td><td>A pesquisa nativa do tema não filtra pacotes por nome, categoria ou preço.</td></tr>
+      <tr><td>Acessibilidade</td><td>Atributo lang="en-US" num site em português. Tipografia 13–14 px. Sem skip-link evidente.</td></tr>
+      <tr><td>Performance</td><td>Dezenas de folhas CSS e scripts (jQuery, WooCommerce, LayerSlider, Google Fonts). Preloader e slider de imagens pesadas (&gt;800 KB).</td></tr>
+      <tr><td>Conteúdo de suporte</td><td>A página «Perguntas Frequentes» reduz-se ao pedido de PUK, sem índice pesquisável.</td></tr>
+    </tbody>
+  </table>
+  <p>
+    Estas falhas justificam um redesenho focado em clareza, catálogo interactivo e
+    tempo de resposta, sem abandonar a marca nem os preços oficiais publicados.
+  </p>
+
+  <h2>2. Fundamentação teórica</h2>
+  <h3>2.1 Experiência do utilizador (UX)</h3>
+  <p>
+    Nielsen e Molich (1990) propõem heurísticas ainda vigentes: visibilidade do
+    estado do sistema, correspondência com o mundo real, controlo do utilizador,
+    consistência, prevenção de erros, reconhecimento em vez de memorização, flexibilidade
+    e eficiência, design estético e minimalista, recuperação de erros e ajuda.
+    O site original viola sobretudo a consistência (menus duplicados), a eficiência
+    (ausência de filtro) e a prevenção de erros (tabelas ambíguas). O redesenho
+    responde com toasts, labels explícitos, ordenação e um menu de sete itens.
+  </p>
+  <p>
+    Krug (2014) resume a usabilidade na regra «não me faça pensar». Um operador de
+    telecomunicações deve permitir encontrar um pacote em poucos segundos. Por isso
+    o catálogo aplica pesquisa incremental (input) e ordenação por preço, volume,
+    validade e data — atributos que o enunciado pede expressamente.
+  </p>
+  <h3>2.2 Responsividade e acessibilidade</h3>
+  <p>
+    A abordagem mobile-first (Wroblewski, 2011) e as media queries do CSS3 permitem
+    o mesmo HTML adaptar-se a ecrãs estreitos. As WCAG 2.2 (W3C, 2023) exigem
+    contraste, navegação por teclado, texto alternativo e idioma correcto. Este
+    projecto usa lang="pt", skip-link, botões com aria-label, prefers-reduced-motion
+    e formulários com required / type="email".
+  </p>
+  <h3>2.3 Tecnologias web no cliente</h3>
+  <p>
+    HTML5 fornece secções semânticas (header, nav, main, footer, article). CSS
+    contemporâneo usa Flexbox e Grid para layout bidimensional, variáveis CSS para
+    a paleta Tmcel e transições suaves. JavaScript no browser manipula o DOM,
+    persiste estado em localStorage (API Web Storage) e aplica algoritmos clássicos:
+    pesquisa linear O(n) sobre o catálogo e ordenação estável via
+    Array.prototype.sort (tipicamente timsort nos motores modernos, O(n log n)).
+    Para dezenas de ofertas, a pesquisa linear é adequada e previsível, evitando
+    over-engineering (Knuth, 1998, sobre escolher o algoritmo certo para o tamanho
+    dos dados).
+  </p>
+
+  <h2>3. Descrição do website redesenhado</h2>
+  <p>
+     O website é estático, multi-página, sem frameworks, para cumprir o enunciado
+     («ficheiros .html, .css e .js»). Páginas: início, pacotes, serviços, produto,
+     lojas, notícias, suporte, contacto, conta (OTP / M-Cash) e comparação com o original.
+  </p>
+  <h3>3.1 Funcionalidades</h3>
+  <ul>
+     <li><strong>Catálogo de pacotes:</strong> 77 ofertas oficiais (Netgiro, GIGA, Jovem, Ilimitado, PLUS, MAIS, MAX, BandaLarga) com preço em MT, volume e validade. O público não altera o catálogo oficial.</li>
+     <li><strong>Interesse do utilizador:</strong> carrinho, favoritos e mensagens de contacto (localStorage). Adicionar/remover aplica-se ao que é dele, não às ofertas Tmcel.</li>
+     <li><strong>Conta OTP + M-Cash:</strong> número do cartão, código OTP (simulado), estado, dados pessoais, saldo, histórico; pagamento com PIN e opção de comprar para outro número.</li>
+     <li><strong>Busca:</strong> filtro por nome, categoria, tipo (pré/pós) e USSD; pesquisa global (ícone ou Ctrl/Cmd+K) sobre produtos, pacotes, lojas e notícias.</li>
+     <li><strong>Ordenação:</strong> preço crescente/decrescente, volume, validade, nome e data.</li>
+     <li><strong>Lojas:</strong> pontos de atendimento pesquisáveis por cidade e província — corrige o mapa original com 0 lojas.</li>
+     <li><strong>FAQ pesquisável</strong>, WhatsApp clicável (82 100 1000) e notícias com «Ler mais».</li>
+     <li><strong>Comparação:</strong> página dedicada que contrapõe limitações do original às melhorias.</li>
+  </ul>
+  <h3>3.2 Melhorias de UX</h3>
+  <p>
+    Hierarquia visual com hero, cartões e pills da marca; acções primárias em amarelo
+    Tmcel; menu curto; códigos USSD (*123#, *171#, 800 375 375) visíveis na home;
+    tarifas nacionais (4,40 MT/min, 0,71 MT/MB) em destaque; adaptação a ecrãs
+    &lt;760 px com menu hamburger. O utilizador recebe confirmação imediata ao
+    gravar, adicionar ao carrinho ou falhar validação.
+  </p>
+
+  <h2>4. Tecnologias utilizadas, performance, responsividade e usabilidade</h2>
+  <h3>4.1 HTML</h3>
+  <p>
+    Estrutura semântica, formulários com atributos de validação, tabelas de dados
+    para o DUO e skip-link. O idioma declarado é português. Comentários no código
+    explicam a origem dos dados (páginas oficiais Netgiro, GIGA, Jovem, PLUS, BandaLarga).
+  </p>
+  <h3>4.2 CSS</h3>
+  <p>
+    Um único ficheiro (css/style.css) com variáveis da paleta Enfold oficial,
+    Grid para catálogos (3 e 4 colunas) e Flexbox para cabeçalho, toolbar e acções.
+    Media queries em 980 px e 760 px. Animações limitadas a transform/opacity;
+    desactivadas se o sistema pedir reduced motion.
+  </p>
+  <h3>4.3 JavaScript</h3>
+  <p>
+     Módulos por responsabilidade: data.js (fonte), app.js (chrome, carrinho, busca
+     global), account.js (OTP e M-Cash), catalog.js (filtro + sort + acções do
+     visitante), stores.js (lojas). Não há bibliotecas externas. A persistência
+     isola sessão, favoritos e pagamentos do catálogo oficial, que permanece imutável.
+  </p>
+  <h3>4.4 Performance</h3>
+  <p>
+    Sem jQuery, sem slider automático, sem webfonts bloqueantes. O CSS e o JS
+    cabem em poucos kilobytes. Imagens oficiais são referenciadas localmente.
+    Estimativa qualitativa: o original dispara dezenas de pedidos HTTP; o redesenho
+    pede HTML + CSS + 2–3 JS + imagens visíveis. O First Contentful Paint deixa de
+    depender do preloader Enfold. A taxa de interacção sobe porque pesquisa e
+    ordenação são síncronas no cliente, sem round-trip ao servidor.
+  </p>
+  <h3>4.5 Teste</h3>
+  <p>
+    Verificação manual em viewport desktop (~1280 px) e móvel (~375 px), navegação
+    por teclado no menu e nos formulários, e persistência do carrinho após recarregar
+     a página. Os fluxos de conta (OTP, PIN M-Cash, compra para outro número) e o
+     formulário de contacto foram exercitados com dados válidos e inválidos
+     (número incompleto, PIN errado, email mal formado).
+  </p>
+
+  <h2>5. Conclusão</h2>
+  <p>
+    O redesenho demonstra que um operador nacional pode apresentar as mesmas ofertas
+    oficiais com uma interface mais rápida, pesquisável e honesta quanto a preços e
+    validade. Cumpriram-se os objectivos de aprendizagem: aplicar HTML, CSS e
+    JavaScript num caso real; resolver problemas de usabilidade do site existente;
+    e evidenciar UX, responsividade e escolha tecnológica adequada (vanilla, sem CMS).
+    Limitações: o mapa geográfico interactivo e a facturação real ficam de fora
+    (o enunciado pede front-end). Trabalho futuro incluiria testes de utilizador
+    formais (SUS) e medição Lighthouse comparativa com tmcel.mz.
+  </p>
+  <p>
+    <strong>Entrega:</strong> código-fonte neste repositório; website estático apto
+    a Vercel (pasta raiz, sem build); vídeo demonstrativo até 5 minutos a colocar
+    no mesmo Google Drive do código, juntamente com os links públicos pedidos no
+    enunciado.
+  </p>
+
+  <h2>6. Referências bibliográficas</h2>
+  <ol>
+    <li>Krug, S. (2014). <em>Don't Make Me Think, Revisited</em>. New Riders.</li>
+    <li>Nielsen, J., &amp; Molich, R. (1990). Heuristic evaluation of user interfaces. <em>CHI '90</em>, 249–256.</li>
+    <li>W3C (2023). <em>Web Content Accessibility Guidelines (WCAG) 2.2</em>. https://www.w3.org/TR/WCAG22/</li>
+    <li>W3C (2023). <em>HTML Living Standard / CSS Grid e Flexbox</em>. https://html.spec.whatwg.org/ e https://www.w3.org/TR/css-grid-1/</li>
+    <li>Wroblewski, L. (2011). <em>Mobile First</em>. A Book Apart.</li>
+    <li>Knuth, D. (1998). <em>The Art of Computer Programming, Vol. 3: Sorting and Searching</em>. Addison-Wesley.</li>
+    <li>Tmcel – Moçambique Telecom, SA (2025). Website institucional. https://www.tmcel.mz/ (consultado em Outubro de 2026).</li>
+    <li>Norman, D. (2013). <em>The Design of Everyday Things</em> (ed. rev.). Basic Books.</li>
+    <li>MDN Web Docs (2024). <em>Web Storage API</em>. https://developer.mozilla.org/docs/Web/API/Web_Storage_API</li>
+  </ol>
+
+  <p class="muted">
+    Nota de entrega (enunciado): o vídeo (máx. 5 min) e o código-fonte devem ficar
+    num repositório público do Google Drive. O link do Drive e o link da hospedagem
+    Vercel devem constar neste relatório após publicação. Este ficheiro pode ser
+    impresso em PDF (Ficheiro → Imprimir) para respeitar o máximo de 8 páginas.
+  </p>
+</body>
+</html>

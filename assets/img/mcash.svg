@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 280 80" role="img" aria-label="M-Cash">
+  <rect width="280" height="80" rx="16" fill="#00492a"/>
+  <rect x="12" y="12" width="56" height="56" rx="14" fill="#f6d21b"/>
+  <path d="M24 48V28h7.2l6.3 14.2L43.8 28H51v20h-6.2V36.4L39.2 48h-5.6l-5.6-11.6V48H24z" fill="#00492a"/>
+  <text x="84" y="36" font-family="Segoe UI, Arial, sans-serif" font-size="22" font-weight="800" fill="#ffffff">M-Cash</text>
+  <text x="84" y="58" font-family="Segoe UI, Arial, sans-serif" font-size="12" font-weight="600" fill="#8bba34">Carteira móvel Tmcel</text>
+</svg>
